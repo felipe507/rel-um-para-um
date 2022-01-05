@@ -44,11 +44,32 @@ Route::get('/enderecos', function(){
         echo '<p>Numero:'. $e->numero . "</p>";
         echo '<p>Bairro:'. $e->bairro . "</p>";
         echo '<p>Cidade'. $e->cidade . "<p>";
-        echo '<p>Cidade'. $e->cidade . "<p>";
         echo '<p>Uf'. $e->uf . "<p>";
         echo '<p>cep'. $e->cep . "<p>";
-        echo '<p>Telefone' . $e->cliente->nome . "<p>";
-        echo '<p>cliente' . $e->cliente->telefone . "<p>";
+        echo '<p>cliente' . $e->cliente->nome . "<p>";
+        echo '<p>cliente' . $e->cliente->nome . "<p>";
         echo '<hr>';
     }
+});
+
+Route::get('/inserir', function(){
+    $c = new Cliente();
+    $c->nome = "Felipe";
+    $c->telefone = "35765246";
+    $c->save();
+    $e = new Endereco();
+    $e->rua = "Alfaneiros";
+    $e->bairro = "Parque da Bandeiras";
+    $e->numero = "450";
+    $e->uf = "SP";
+    $e->cidade = "SV";
+    $e->cep = "12321312312332";
+    $c->endereco()->save($e);
+
+});
+
+Route::get('clientes/json', function(){
+    $clientes= Cliente::with(['endereco'])->get();
+    //$clientes= Cliente::with(['endereco', 'outras tabelas'])->get();
+    return $clientes->toJson();
 });
