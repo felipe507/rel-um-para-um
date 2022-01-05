@@ -73,3 +73,10 @@ Route::get('clientes/json', function(){
     //$clientes= Cliente::with(['endereco', 'outras tabelas'])->get();
     return $clientes->toJson();
 });
+
+
+Route::get('enderecos/json', function(){
+    $enderecos= Endereco::with(['cliente'])->get();
+    //$clientes= Cliente::with(['endereco', 'outras tabelas'])->get();
+    return $enderecos->toJson();
+});
