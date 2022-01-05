@@ -47,6 +47,8 @@ Route::get('/enderecos', function(){
         echo '<p>Cidade'. $e->cidade . "<p>";
         echo '<p>Uf'. $e->uf . "<p>";
         echo '<p>cep'. $e->cep . "<p>";
+        echo '<p>Telefone' . $e->cliente->nome . "<p>";
+        echo '<p>cliente' . $e->cliente->telefone . "<p>";
         echo '<hr>';
     }
 });
